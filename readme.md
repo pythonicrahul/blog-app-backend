@@ -3,7 +3,7 @@
 ## Project Setup
 
 Test Live Project on https://heyrahul.cloud/api/v1/
-The Swagger Documentation is available here [Click here](https://heyrahul.cloud/docs/)
+[Link to import PostMan Collection](https://drive.google.com/file/d/1tVCd0NvcLCIsC80wDaKElFx41fRbM_J3/view?usp=sharing)
 
 ### 1. Run without Docker
 
@@ -23,6 +23,8 @@ npm run test
 ```
 
 ## API Documentation
+
+The Swagger Documentation is available here [Click here](https://heyrahul.cloud/docs/)
 
 ### User Authentication APIs
 
