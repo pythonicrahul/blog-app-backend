@@ -9,6 +9,7 @@ export interface IBlogUpdateRequest {
 }
 
 export interface IBlogQuery {
+    isDeleted ?: boolean;
     title?: any;
     id ?: string;
     author ?: string;

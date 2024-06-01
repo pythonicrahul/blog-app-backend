@@ -17,7 +17,9 @@ export default class BlogsController {
         @Query() author ?: string,
     ): Promise<IResponseBase> {
 
-        const query: IBlogQuery = {}
+        const query: IBlogQuery = {
+            isDeleted: false
+        }
 
         if(id){
             query.id = id
