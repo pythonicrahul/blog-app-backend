@@ -2,7 +2,8 @@
 
 ## Project Setup
 
-### 0. Test Live Project on https://heyrahul.cloud/api/v1/
+Test Live Project on https://heyrahul.cloud/api/v1/
+The Swagger Documentation is available here [Click here](https://heyrahul.cloud/docs/)
 
 ### 1. Run without Docker
 
@@ -22,8 +23,6 @@ npm run test
 ```
 
 ## API Documentation
-
-The Swagger Documentation is available here [Click here](https://heyrahul.cloud/docs/)
 
 ### User Authentication APIs
 
