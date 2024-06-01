@@ -55,9 +55,9 @@ The Swagger Documentation is available here [Click here](http://heyrahul.cloud/d
 {
     "status": true,
     "data": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjU4ZDIyZmMyYWRjMjQ5ZmEwNmQ3N2IiLCJuYW1lIjoiUmFodWwgSmFpbiIsImVtYWlsIjoicmFodWxqYWluMzEwOUBnbWFpbC5jb20iLCJleHAiOjE3MTcyNzIwODUsImlhdCI6MTcxNzI2ODQ4NH0.VG9X-YhKV1-gkyhgk5Fvyh4BHMWD8HLFBf1FUs0sj2g"
+        "token": "<token>"
     },
-    "message": "User logged in successfully"
+    "message": "User logged/Registered in successfully"
 }
 ```
 
