@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - MONGO_URI=mongodb://mongodb:27017/blog-app
+      - SECRET=secret
+    networks:
+      - blognet
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - 27019:27017
+    volumes:
+      - "mongo:/data/db"
+    networks:
+      - blognet
+
+networks:
+  blognet:
+    external: true
+
+volumes:
+  mongo: {}

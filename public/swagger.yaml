@@ -1,0 +1,273 @@
+openapi: 3.0.0
+components:
+  examples: {}
+  headers: {}
+  parameters: {}
+  requestBodies: {}
+  responses: {}
+  schemas:
+    Page:
+      type: number
+      format: double
+      minimum: 1
+    PageSize:
+      type: number
+      format: double
+      minimum: 1
+    IMetaValue:
+      properties:
+        items:
+          type: number
+          format: double
+        page:
+          $ref: "#/components/schemas/Page"
+        pages:
+          type: number
+          format: double
+        page_size:
+          $ref: "#/components/schemas/PageSize"
+      type: object
+      additionalProperties: false
+    EHTTPCode:
+      enum:
+        - 200
+        - 400
+        - 401
+        - 201
+        - 500
+        - 404
+        - 429
+        - 403
+      type: number
+    IResponseBase:
+      properties:
+        status:
+          type: boolean
+        data: {}
+        meta:
+          $ref: "#/components/schemas/IMetaValue"
+        message:
+          type: string
+        statusCode:
+          $ref: "#/components/schemas/EHTTPCode"
+      required:
+        - status
+        - data
+        - message
+      type: object
+      additionalProperties: false
+    IRegistrationRequest:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - name
+        - email
+        - password
+      type: object
+      additionalProperties: false
+    ILoginRequest:
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+      type: object
+      additionalProperties: false
+    IBlogCreationRequest:
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+      required:
+        - title
+        - content
+      type: object
+      additionalProperties: false
+    IBlogUpdateRequest:
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+      type: object
+      additionalProperties: false
+  securitySchemes: {}
+info:
+  title: blog-app-backend
+  version: 1.0.0
+  license:
+    name: ISC
+  contact: {}
+paths:
+  /api/v1/register:
+    post:
+      operationId: Register
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IResponseBase"
+      tags:
+        - Users
+      security: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IRegistrationRequest"
+  /api/v1/login:
+    post:
+      operationId: Login
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IResponseBase"
+      tags:
+        - Users
+      security: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ILoginRequest"
+  /api/v1/blogs:
+    get:
+      operationId: GetBlogs
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IResponseBase"
+      tags:
+        - Blogs
+      security: []
+      parameters:
+        - in: query
+          name: page
+          required: true
+          schema:
+            format: double
+            type: number
+        - in: query
+          name: page_size
+          required: true
+          schema:
+            format: double
+            type: number
+        - in: query
+          name: id
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: title
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: author
+          required: false
+          schema:
+            type: string
+    post:
+      operationId: CreateBlog
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IResponseBase"
+      tags:
+        - Blogs
+      security:
+        - jwt: []
+      parameters:
+        - in: header
+          name: token
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IBlogCreationRequest"
+  /api/v1/blogs/{id}:
+    put:
+      operationId: UpdateBlog
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IResponseBase"
+      tags:
+        - Blogs
+      security:
+        - jwt: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: token
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IBlogUpdateRequest"
+    delete:
+      operationId: DeleteBlog
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IResponseBase"
+      tags:
+        - Blogs
+      security:
+        - jwt: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: token
+          required: false
+          schema:
+            type: string
+servers:
+  - url: /
