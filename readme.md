@@ -10,7 +10,8 @@ Link to import: [PostMan Collection](https://drive.google.com/file/d/1tVCd0NvcLC
 
 Command To Run the Project
 ```
-npm run dev
+1. npm install
+2. npm run dev
 ```
 
 ### 2. Run with Docker
